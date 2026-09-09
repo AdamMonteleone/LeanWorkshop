@@ -33,7 +33,7 @@ Keep the whole project folder together: the Lean files need the included project
 
 ## Useful links
 
-- [Loogle](https://loogle.lean-lang.org/) — search for library lemmas; use `#check` in Lean to inspect a result.
+- [Loogle](https://loogle.lean-lang.org/) - search for library lemmas; use `#check` in Lean to inspect a result.
 - [Lean installation help](https://lean-lang.org/install/).
 - [Mathlib setup and cached builds](https://github.com/leanprover-community/mathlib4#downloading-cached-build-files).
 
@@ -47,5 +47,3 @@ To check the files from a terminal in the project folder:
 lake env lean Week1.lean
 lake env lean Week1Solutions.lean
 ```
-
-The exercise file contains intentional unfinished proofs; the solutions file is complete.
