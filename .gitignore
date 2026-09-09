@@ -1,0 +1,30 @@
+# Local dependencies and build output
+.lake/
+*.olean
+*.ilean
+*.c
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+*.lib
+*.pdb
+*.trace
+
+# Editor and operating-system files
+.vscode/
+.idea/
+*.code-workspace
+.DS_Store
+Thumbs.db
+Desktop.ini
+*~
+*.swp
+*.swo
+
+# Local environment and credentials
+.env
+.env.*
+!.env.example
