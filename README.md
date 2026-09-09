@@ -2,7 +2,7 @@
 
 ## Week 1 — Primes & Irrationality
 
-Start with a few tactic exercises, then formalize proofs that there are infinitely many primes and that the square root of two is irrational.
+The goal this week is to become acquainted with the basic tactics in Lean and formalize two familiar proofs: Euclid’s proof that there are infinitely many primes, and the proof that $\sqrt{2}$ is irrational.
 
 - [Week1.lean](Week1.lean) — the exercise file. Replace each `sorry` with your proof.
 - [Week1Solutions.lean](Week1Solutions.lean) — complete solutions with matching exercise labels.
@@ -11,8 +11,13 @@ Start with a few tactic exercises, then formalize proofs that there are infinite
 ## Get started
 
 1. Follow the [Lean installation guide](https://lean-lang.org/install/) to install VS Code, the official Lean 4 extension, and complete its setup.
-2. **[Download the project as a ZIP](https://github.com/AdamMonteleone/LeanWorkshop/archive/refs/heads/main.zip)** and extract it. You can also use the green **Code → Download ZIP** button above.
-3. In VS Code, choose **File → Open Folder** and open the extracted project folder containing `lakefile.toml`.
+2. Clone the repository by running:
+
+   ```sh
+   git clone https://github.com/AdamMonteleone/LeanWorkshop.git
+   ```
+
+3. In VS Code, choose **File → Open Folder** and open the cloned `LeanWorkshop` folder containing `lakefile.toml`.
 4. Choose **Terminal → New Terminal** and run:
 
    ```sh
@@ -23,14 +28,6 @@ Start with a few tactic exercises, then formalize proofs that there are infinite
 5. Open `Week1.lean` and start with Exercise 1. Place your cursor inside a proof to see the goal and hypotheses in Lean's Infoview. Warnings about `sorry` are expected until you complete the exercises.
 
 Keep the whole project folder together: the Lean files need the included project configuration to find the correct library and Lean version.
-
-### Prefer Git?
-
-Clone the project, then follow steps 3–5 above:
-
-```sh
-git clone https://github.com/AdamMonteleone/LeanWorkshop.git
-```
 
 ## Useful links
 
