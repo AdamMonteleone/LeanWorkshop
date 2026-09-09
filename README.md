@@ -1,5 +1,7 @@
 # Lean Workshop
 
+Resources for Lean workshops held as part of the [Melbourne Lean Seminar](https://mcdoll.github.io/leanseminar.html).
+
 ## Week 1 — Primes & Irrationality
 
 The goal this week is to become acquainted with the basic tactics in Lean and formalize two familiar proofs: Euclid’s proof that there are infinitely many primes, and the proof that $\sqrt{2}$ is irrational.
