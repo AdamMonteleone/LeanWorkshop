@@ -35,12 +35,13 @@ Keep the whole project folder together: the Lean files need the included project
 ## Useful links
 
 - [Loogle](https://loogle.lean-lang.org/) - search for library lemmas; use `#check` in Lean to inspect a result.
+- [Natural Number Game](https://adam.math.hhu.de/#/g/leanprover-community/nng4) - further practice with tactics, witnesses, and elementary proofs.
 - [Lean installation help](https://lean-lang.org/install/).
 - [Mathlib setup and cached builds](https://github.com/leanprover-community/mathlib4#downloading-cached-build-files).
 
 ## Project version
 
-This project uses Lean **4.32.1** and mathlib **v4.32.1**, pinned by `lean-toolchain`, `lakefile.toml`, and `lake-manifest.json`.
+This project uses Lean **4.33.1** and mathlib **v4.33.1**, the latest matching stable releases as of 10 September 2026, pinned by `lean-toolchain`, `lakefile.toml`, and `lake-manifest.json`.
 
 To check the files from a terminal in the project folder:
 
