@@ -64,7 +64,6 @@ example : (3 : ℚ) / 4 + 1 / 6 = 11 / 12 := by
     sorry
 
 /-! ## Exercise 2: infinitely many primes
-Parts (a)–(c) practise choosing and unpacking witnesses, also useful in Exercise 3.
 Parts (d) and (e) provide the two lemmas for the prime proof in (f).
 -/
 
