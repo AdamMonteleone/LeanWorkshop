@@ -1,0 +1,76 @@
+\documentclass[a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{fontspec}
+\setmonofont{FreeMono}[Scale=1.0]
+\usepackage{enumitem}
+\setlist[enumerate,1]{topsep=5pt,itemsep=6pt,parsep=0pt}
+\setlist[enumerate,2]{topsep=3pt,itemsep=1pt,parsep=0pt}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\bfseries Lean Workshop}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\headheight}{14pt}
+\usepackage[hidelinks]{hyperref}
+
+\begin{document}
+\begin{center}
+\large\bfseries Workshop Sheet - Week 2
+\end{center}
+
+\noindent\textbf{Sets, functions and relations in Lean.}
+Below are some of the new tactics we will be using today.
+\smallskip
+
+\noindent{\small
+\begin{tabular}{@{}p{0.35\linewidth}p{0.61\linewidth}@{}}
+\verb|constructor| & Split an $\land$ goal or prove both directions of $\leftrightarrow$.\\
+\verb|ext x| & Prove a set equality by comparing membership of $x$.\\
+\verb|change P| & Replace the goal by a definitionally equal expression \verb|P|.\\
+\verb|funext x| & Prove a function equality by comparing values at $x$.\\
+\verb|calc| & Write a chain of equalities, giving a proof for each step.\\
+\verb|ring| & Prove a polynomial identity by expanding and collecting terms.
+\end{tabular}}\par
+\smallskip
+\par\noindent It's helpful to know that Lean unfolds definitions automatically, so $x\in S\cap T$ means $x\in S\land x\in T$, and $x\in\{y\}$ means $x=y$. The tactic \verb|change| lets you switch between these forms. The notation \verb|fun x => x + 1| defines the function $x\mapsto x+1$. For \verb|f : X → Y|, \verb|S : Set X| and \verb|U : Set Y|, the expression \verb|f ⁻¹' U| denotes the preimage $f^{-1}(U)$ and \verb|f '' S| the image $f(S)$.
+
+\begin{enumerate}
+\item {\sl Set theory.}
+Let $S,T\subseteq X$, $U\subseteq Y$, $f:X\to Y$, and $x\in X$.
+\begin{enumerate}
+\item If $x\in S$ and $x\in T$, prove that $x\in S\cap T$.
+\item If $x\in S\cap T$, prove that $x\in S$.
+\item If $S\subseteq T$ and $x\in S$, prove that $x\in T$.
+\item If $f(x)\in U$, prove that $x\in f^{-1}(U)$.
+\item If $x\in S$, prove that $f(x)\in f(S)$.
+\item Prove that $f(S\cap T)\subseteq f(S)\cap f(T)$.
+\item Prove that $f(S\cap f^{-1}(U))=f(S)\cap U$.
+    \item Prove that $\mathcal P(S\cap T)=\mathcal P(S)\cap\mathcal P(T)$. {\small Use \verb|Set.powerset S| for the power set of $S$.}
+\end{enumerate}
+
+\item {\sl Functions.}
+Let $f:X\to Y$ and $g:Y\to Z$.
+\begin{enumerate}
+\item If $g\circ f$ is injective, prove that $f$ is injective. {\small (Hint: \verb|Function.Injective f|)}
+\item If $g\circ f$ is surjective, prove that $g$ is surjective. {\small (Hint: \verb|Function.Surjective g|)}
+\item If $r,s:Y\to X$ satisfy $r\circ f=\operatorname{id}_X$ and $f\circ s=\operatorname{id}_Y$, prove that $r=s$. {\small (Hint:  \verb|congrFun h x|)}
+\item Prove that the map $X\to\mathcal P(X)$ given by $x\mapsto\{x\}$ is injective.
+\item Prove and formalize the following theorem.\par
+\textbf{Theorem (Cantor).} \textit{For every set $X$, there is no surjection $X\to\mathcal P(X)$.}
+\end{enumerate}
+
+\item {\sl Relations.}
+Fix $n\in\mathbb Z$ and define $a\sim_n b$ if $n\mid(b-a)$.
+Write $[a]_n=\{x\in\mathbb Z\mid a\sim_n x\}$.
+\begin{enumerate}
+\item Prove that $\sim_n$ is reflexive.
+\item Prove that $\sim_n$ is symmetric.
+\item Prove that $\sim_n$ is transitive.
+\item Prove that $\sim_n$ is an equivalence relation.
+\item If $a\sim_n a'$ and $b\sim_n b'$, prove that $a+b\sim_n a'+b'$.
+\item Prove that $[a]_n=[b]_n$ if and only if $a\sim_n b$.
+\end{enumerate}
+\end{enumerate}
+\end{document}

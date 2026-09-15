@@ -1,6 +1,6 @@
 name = "LeanWorkshop"
 version = "0.1.0"
-defaultTargets = ["Week1", "Week1Solutions"]
+defaultTargets = ["Week1", "Week1Solutions", "Week2", "Week2Solutions"]
 packagesDir = ".lake/packages"
 
 [leanOptions]
@@ -16,6 +16,16 @@ rev = "v4.33.1"
 
 [[lean_lib]]
 name = "Week1"
+srcDir = "Week1"
 
 [[lean_lib]]
 name = "Week1Solutions"
+srcDir = "Week1"
+
+[[lean_lib]]
+name = "Week2"
+srcDir = "Week2"
+
+[[lean_lib]]
+name = "Week2Solutions"
+srcDir = "Week2"
