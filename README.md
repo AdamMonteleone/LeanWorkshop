@@ -6,7 +6,7 @@ Resources for Lean workshops held as part of the [Melbourne Lean Seminar](https:
 
 The goal this week is to become acquainted with the basic tactics in Lean and formalize two familiar proofs: Euclid’s proof that there are infinitely many primes, and the proof that $\sqrt{2}$ is irrational.
 
-## Week 2 - Sets, Functions and Relations
+## Week 2 - Sets, Functions, and Relations
 
 The goal this week is to gain familiarity with the basics of sets, functions and equivalence relations. We prove Cantor's theorem in Lean, and look at equivalence relations for sets, in preparation for groups next the following week. 
 
