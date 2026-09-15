@@ -6,11 +6,6 @@ Resources for Lean workshops held as part of the [Melbourne Lean Seminar](https:
 
 The goal this week is to become acquainted with the basic tactics in Lean and formalize two familiar proofs: Euclid’s proof that there are infinitely many primes, and the proof that $\sqrt{2}$ is irrational.
 
-- [Workshop Sheet - Week 1.pdf](Workshop%20Sheet%20-%20Week%201.pdf)
-- [Week1.lean](Week1.lean)
-- [Week1Solutions.lean](Week1Solutions.lean).
-
-
 ## Get started
 
 1. Follow the [Lean installation guide](https://lean-lang.org/install/) to install VS Code, the official Lean 4 extension, and complete its setup.
