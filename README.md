@@ -41,12 +41,3 @@ Keep the whole project folder together: the Lean files need the included project
 ## Project version
 
 This project uses Lean **4.33.1** and mathlib **v4.33.1**, pinned by `lean-toolchain`, `lakefile.toml`, and `lake-manifest.json`.
-
-To check the files from a terminal in the project folder:
-
-```sh
-lake env lean Week1/Week1.lean
-lake env lean Week1/Week1Solutions.lean
-lake env lean Week2/Week2.lean
-lake env lean Week2/Week2Solutions.lean
-```
