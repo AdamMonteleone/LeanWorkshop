@@ -8,12 +8,7 @@ The goal this week is to become acquainted with the basic tactics in Lean and fo
 
 ## Week 2 - Sets, Functions and Relations
 
-Sets, images and preimages; injective and surjective functions; Cantor's theorem; and congruence relations as preparation for groups.
-
-- [Workshop Sheet - Week 2.pdf](Week2/Workshop%20Sheet%20-%20Week%202.pdf)
-- [Week2.lean](Week2/Week2.lean) - exercises with proof placeholders.
-- [Week2Solutions.lean](Week2/Week2Solutions.lean) - complete worked solutions.
-- [Worksheet LaTeX source](Week2/Workshop%20Sheet%20-%20Week%202.tex).
+The goal this week is to gain familiarity with tghe basics of sets, functions and equivalence relations. We prove Cantor's theorem in Lean, and look at equivalence relations for sets, in preparation for groups next the following week. 
 
 ## Get started
 
