@@ -10,7 +10,7 @@ variable {X Y Z : Type*}
 /-! ## 1. Set theory -/
 
 -- 1(a): x ∈ S and x ∈ T imply x ∈ S ∩ T.
-lemma mem_inter_of_mem (S T : Set X) (x : X) (h₁ : x ∈ S) (h₂ : x ∈ T) : x ∈ S ∩ T := by
+lemma mem_inter_of_mem (S T : Set X) (x : X) (hS : x ∈ S) (hT : x ∈ T) : x ∈ S ∩ T := by
   sorry
 
 -- 1(b): x ∈ S ∩ T → x ∈ S.
@@ -34,31 +34,26 @@ lemma image_inter_subset (f : X → Y) (S T : Set X) :
     f '' (S ∩ T) ⊆ f '' S ∩ f '' T := by
   sorry
 
--- 1(g): f(S ∩ f⁻¹(U)) = f(S) ∩ U.
-lemma image_inter_preimage (f : X → Y) (S : Set X) (U : Set Y) :
-    f '' (S ∩ f ⁻¹' U) = f '' S ∩ U := by
-  sorry
-
--- 1(h): 𝒫(S ∩ T) = 𝒫(S) ∩ 𝒫(T).
-lemma powerset_inter (S T : Set X) : 𝒫 (S ∩ T) = 𝒫 S ∩ 𝒫 T := by
-  sorry
 
 /-! ## 2. Functions -/
 
 -- 2(a): If g ∘ f is injective, then f is injective.
 lemma injective_of_comp (f : X → Y) (g : Y → Z)
-    (hᵢ : Function.Injective (g ∘ f)) : Function.Injective f := by
+    (hcomp : Function.Injective (g ∘ f)) : Function.Injective f := by
   sorry
+
 
 -- 2(b): If g ∘ f is surjective, then g is surjective.
 lemma surjective_of_comp (f : X → Y) (g : Y → Z)
-    (hₛ : Function.Surjective (g ∘ f)) : Function.Surjective g := by
+    (hcomp : Function.Surjective (g ∘ f)) : Function.Surjective g := by
   sorry
 
 -- 2(c): If r ∘ f = id and f ∘ s = id, then r = s.
 lemma inverse_unique (f : X → Y) (r s : Y → X)
     (hᵣ : r ∘ f = id) (hₛ : f ∘ s = id) : r = s := by
   sorry
+
+
 
 -- 2(d): The singleton map X → 𝒫(X), x ↦ {x}, is injective.
 lemma singleton_injective : Function.Injective (fun x : X => ({x} : Set X)) := by
@@ -92,13 +87,7 @@ lemma congruent_trans (n a b c : ℤ)
 
 -- 3(d): Congruence modulo n is an equivalence relation.
 lemma congruent_equivalence (n : ℤ) : Equivalence (Congruent n) := by
-  constructor
-  · intro a
-    sorry
-  · intro a b h₁
-    sorry
-  · intro a b c h₁ h₂
-    sorry
+  sorry
 
 -- 3(e): a ∼ a′ and b ∼ b′ imply a + b ∼ a′ + b′.
 lemma congruent_add (n a a' b b' : ℤ)

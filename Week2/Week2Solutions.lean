@@ -17,7 +17,7 @@ lemma mem_inter_of_mem (S T : Set X) (x : X) (hS : x ∈ S) (hT : x ∈ T) : x �
 
 -- 1(b): x ∈ S ∩ T → x ∈ S.
 lemma mem_of_mem_inter (S T : Set X) (x : X) (h : x ∈ S ∩ T) : x ∈ S := by
-  exact h.1
+  exact h.left
 
 -- 1(c): S ⊆ T and x ∈ S imply x ∈ T.
 lemma mem_of_subset (S T : Set X) (x : X) (h : S ⊆ T) (hx : x ∈ S) : x ∈ T := by
@@ -29,16 +29,20 @@ lemma mem_preimage_of_mem (f : X → Y) (U : Set Y) (x : X) (h : f x ∈ U) : x 
 
 -- 1(e): x ∈ S → f(x) ∈ f(S).
 lemma mem_image_of_mem (f : X → Y) (S : Set X) (x : X) (hx : x ∈ S) : f x ∈ f '' S := by
-  exact ⟨x, hx, rfl⟩
+  use x
 
 -- 1(f): f(S ∩ T) ⊆ f(S) ∩ f(T).
 lemma image_inter_subset (f : X → Y) (S T : Set X) :
     f '' (S ∩ T) ⊆ f '' S ∩ f '' T := by
-  intro y h
-  rcases h with ⟨x, hₓ, rfl⟩
+  intro y hy
+  obtain ⟨x, hx⟩ := hy
   constructor
-  · exact ⟨x, hₓ.1, rfl⟩
-  · exact ⟨x, hₓ.2, rfl⟩
+  · rw[← hx.right]
+    apply Set.mem_image_of_mem f
+    exact hx.left.left
+  · rw[← hx.right]
+    apply Set.mem_image_of_mem f
+    exact hx.left.right
 
 -- 1(g): f(S ∩ f⁻¹(U)) = f(S) ∩ U.
 lemma image_inter_preimage (f : X → Y) (S : Set X) (U : Set Y) :
@@ -46,27 +50,43 @@ lemma image_inter_preimage (f : X → Y) (S : Set X) (U : Set Y) :
   ext y
   constructor
   · intro h
-    rcases h with ⟨x, ⟨hₓ, hᵤ⟩, rfl⟩
-    exact ⟨⟨x, hₓ, rfl⟩, hᵤ⟩
+    obtain ⟨hS, hImPre⟩ := Set.image_inter_subset f S (f ⁻¹' U) h
+    constructor
+    · exact hS
+    · apply Set.image_preimage_subset f U
+      exact hImPre
   · intro h
-    rcases h with ⟨⟨x, hₓ, rfl⟩, hᵤ⟩
-    exact ⟨x, ⟨hₓ, hᵤ⟩, rfl⟩
+    obtain ⟨x , hx⟩ := h.left
+    apply Set.mem_of_eq_of_mem hx.right.symm
+    apply mem_image_of_mem f (S ∩ f ⁻¹' U) x
+    constructor
+    · exact hx.left
+    · apply mem_preimage_of_mem f U x
+      apply Set.mem_of_eq_of_mem hx.right
+      exact h.right
 
 -- 1(h): 𝒫(S ∩ T) = 𝒫(S) ∩ 𝒫(T).
 lemma powerset_inter (S T : Set X) : 𝒫 (S ∩ T) = 𝒫 S ∩ 𝒫 T := by
-  ext U
-  change (U ⊆ S ∩ T) ↔ (U ⊆ S ∧ U ⊆ T)
+  ext A
   constructor
-  · intro h
+  · intro hA   -- A ⊆ S ∩ T.
     constructor
-    · intro x hx
-      exact (h hx).1
-    · intro x hx
-      exact (h hx).2
-  · intro h x hx
-    constructor
-    · exact h.1 hx
-    · exact h.2 hx
+    · intro a ha
+      -- Use 1(c): a ∈ A and A ⊆ S ∩ T give a ∈ S ∩ T.
+      obtain ⟨haS, haT⟩ := mem_of_subset A (S ∩ T) a hA ha
+      exact haS
+    · intro a ha
+      obtain ⟨haS, haT⟩ := mem_of_subset A (S ∩ T) a hA ha
+      exact haT
+  · intro hA
+    obtain ⟨hAS, hAT⟩ := hA
+    intro a ha
+    -- Use 1(a): prove a ∈ S and a ∈ T.
+    apply mem_inter_of_mem S T a
+    · apply mem_of_subset A S a hAS -- Use 1(c) with A ⊆ S.
+      exact ha
+    · apply mem_of_subset A T a hAT  -- Use 1(c) with A ⊆ T.
+      exact ha
 
 /-! ## 2. Functions -/
 
@@ -75,7 +95,7 @@ lemma injective_of_comp (f : X → Y) (g : Y → Z)
     (hcomp : Function.Injective (g ∘ f)) : Function.Injective f := by
   intro x y h
   apply hcomp
-  change g (f x) = g (f y)
+  change g (f x) = g (f y) -- changes g ∘ f x = g ∘ f y to g(f(x)) = g(f(y))
   rw [h]
 
 -- 2(b): If g ∘ f is surjective, then g is surjective.
@@ -86,22 +106,21 @@ lemma surjective_of_comp (f : X → Y) (g : Y → Z)
   use f x
   exact hx
 
--- 2(c): If r ∘ f = id and f ∘ s = id, then r = s.
+-- 2(c): If r ∘ f = id and f ∘ s = id, then r = s. Hint: congrFun
 lemma inverse_unique (f : X → Y) (r s : Y → X)
     (hr : r ∘ f = id) (hs : f ∘ s = id) : r = s := by
-  funext y
+  ext y
   have h₁ : r (f (s y)) = s y := congrFun hr (s y)
   have h₂ : f (s y) = y := congrFun hs y
-  rw [h₂] at h₁
+  rw [h₂] at h₁ -- r(y) = r(f(s(y))) = id(s(y)) = s(y)
   exact h₁
 
 -- 2(d): The singleton map X → 𝒫(X), x ↦ {x}, is injective.
 lemma singleton_injective : Function.Injective (fun x : X => ({x} : Set X)) := by
   intro x y h
   change ({x} : Set X) = ({y} : Set X) at h
-  have hx : x ∈ ({x} : Set X) := by rfl
-  rw [h] at hx
-  exact hx
+  change x ∈ ({y} : Set X)
+  simp [← h]
 
 -- 2(e): Prove and formalize Cantor’s theorem.
 -- Theorem: For every set X, there is no surjection X → 𝒫(X).
@@ -138,7 +157,7 @@ lemma congruent_refl (n a : ℤ) : Congruent n a a := by
 
 -- 3(b): a ∼ b → b ∼ a.
 lemma congruent_symm (n a b : ℤ) (hab : Congruent n a b) : Congruent n b a := by
-  rcases hab with ⟨k, hk⟩
+  obtain ⟨k, hk⟩ := hab
   change ∃ l : ℤ, a - b = n * l
   use -k
   calc
