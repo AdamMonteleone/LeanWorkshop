@@ -12,7 +12,7 @@ main proof; its earlier parts prepare the steps you need.
 Place your cursor inside a proof to see the current goal and available
 hypotheses in Lean's Infoview. A `sorry` is an unfinished proof placeholder;
 its warning is expected until you replace it. Start with `intro`, `exact`,
-`apply`, `use`, `rfl`, `rw`, `simp`, `rcases`, and `norm_num`. The warm-up also
+`apply`, `use`, `rfl`, `rw`, `simp`, `obtain`, and `norm_num`. The warm-up also
 introduces `linarith`, `positivity`, and `nlinarith`.
 
 You are not expected to know mathlib lemma names. Search for a relevant
@@ -43,7 +43,7 @@ example (m : ℕ) : m + 1 - m = 1 := by
     sorry
 
 -- 1(e): Bound a square.
--- For alternatives, `rcases h with h1 | h2` creates one branch per case.
+-- For alternatives, `obtain h1 | h2 := h` creates one branch per case.
 example (n : ℕ) (h : n = 2 ∨ n = 3) : n ^ 2 ≤ 9 := by
     sorry
 
@@ -64,15 +64,14 @@ example : (3 : ℚ) / 4 + 1 / 6 = 11 / 12 := by
     sorry
 
 /-! ## Exercise 2: infinitely many primes
-Parts (d) and (e) provide the two lemmas for the prime proof in (f).
--/
+Parts (d) and (e) provide the two lemmas for the prime proof in (f). -/
 
 -- 2(a): Find a larger natural number.
 example (n : ℕ) : ∃ m : ℕ, n < m := by
     sorry
 
 -- 2(b): Add multiples.
--- For an existential, `rcases h with ⟨u, hu⟩` names a witness and its property.
+-- For an existential, `obtain ⟨u, hu⟩ := h` names a witness and its property.
 example (d a b : ℕ) (ha : d ∣ a) (hb : d ∣ b) : d ∣ a + b := by
     sorry
 
@@ -109,7 +108,7 @@ Theorem: there are infinitely many primes.
 theorem primes_above_every_bound (n : ℕ) :
     ∃ p : ℕ, Nat.Prime p ∧ n < p := by
     -- ∧ means "and": this existential supplies p together with two proofs.
-    -- `obtain` unpacks a newly obtained proof, like `rcases` on a hypothesis.
+    -- `obtain` unpacks a proof into its witness and accompanying hypotheses.
     obtain ⟨p, hp, hdiv⟩ := prime_divisor_factorial_add_one n
     use p, hp
     sorry

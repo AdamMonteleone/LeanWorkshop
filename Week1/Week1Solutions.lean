@@ -31,9 +31,9 @@ example (m : ℕ) : m + 1 - m = 1 := by
     simp
 
 -- 1(e): Bound a square.
--- For alternatives, `rcases h with h1 | h2` creates one branch per case.
+-- For alternatives, `obtain h1 | h2 := h` creates one branch per case.
 example (n : ℕ) (h : n = 2 ∨ n = 3) : n ^ 2 ≤ 9 := by
-    rcases h with htwo | hthree
+    obtain htwo | hthree := h
     · rw [htwo]
       norm_num
     · rw [hthree]
@@ -66,31 +66,23 @@ example (n : ℕ) : ∃ m : ℕ, n < m := by
     linarith
 
 -- 2(b): Add multiples.
--- For an existential, `rcases h with ⟨u, hu⟩` names a witness and its property.
+-- For an existential, `obtain ⟨u, hu⟩ := h` names a witness and its property.
 example (d a b : ℕ) (ha : d ∣ a) (hb : d ∣ b) : d ∣ a + b := by
-    rcases ha with ⟨u, hu⟩
-    rcases hb with ⟨v, hv⟩
+    obtain ⟨u, hu⟩ := ha
+    obtain ⟨v, hv⟩ := hb
     use u + v
     rw [hu, hv]
     nlinarith
 
 -- 2(c): Divisibility is transitive.
 example (a b c : ℕ) (hab : a ∣ b) (hbc : b ∣ c) : a ∣ c := by
-    rcases hab with ⟨u, hu⟩
-    rcases hbc with ⟨v, hv⟩
+    obtain ⟨u, hu⟩ := hab
+    obtain ⟨v, hv⟩ := hbc
     use u * v
     rw [hv, hu]
     nlinarith
 
-/-! Worked example: composing proofs (not an exercise).
-`have` records an intermediate fact. `apply` changes a conclusion into its premise.
--/
-example (P Q R : Prop) (hPQ : P → Q) (hQR : Q → R) (hP : P) : R := by
-    have hQ : Q := by
-        apply hPQ  -- To prove Q using P → Q, the new goal is P.
-        exact hP
-    apply hQR      -- To prove R using Q → R, the new goal is Q.
-    exact hQ
+
 
 -- 2(d): Find a prime divisor of n! + 1.
 lemma prime_divisor_factorial_add_one (n : ℕ) :
@@ -120,7 +112,7 @@ it would also divide n!, hence n!+1-n! = 1, contradicting primality. Thus p > n.
 theorem primes_above_every_bound (n : ℕ) :
     ∃ p : ℕ, Nat.Prime p ∧ n < p := by
     -- ∧ means "and": this existential supplies p together with two proofs.
-    -- `obtain` unpacks a newly obtained proof, like `rcases` on a hypothesis.
+    -- `obtain` unpacks a proof into its witness and accompanying hypotheses.
     obtain ⟨p, hp, hdiv⟩ := prime_divisor_factorial_add_one n
     use p, hp
     by_contra h
@@ -129,8 +121,7 @@ theorem primes_above_every_bound (n : ℕ) :
     exact hdiv
 
 /-! ## Exercise 3: the square root of two is irrational
-Parts (a)–(e) are lemmas for the parity argument.
--/
+Parts (a)–(e) are lemmas for the parity argument. -/
 
 -- Each named lemma below is available for use in later proofs.
 
@@ -143,7 +134,7 @@ lemma two_dvd_square_of_eq_two_mul_square (a b : ℤ) (hsq : a ^ 2 = 2 * b ^ 2) 
 lemma even_of_even_square (a : ℤ) (hsq : (2 : ℤ) ∣ a ^ 2) :
     (2 : ℤ) ∣ a := by
     rw [pow_two, Int.prime_two.dvd_mul] at hsq
-    rcases hsq with h | h
+    obtain h | h := hsq
     · exact h
     · exact h
 
@@ -160,7 +151,6 @@ lemma denominator_square_after_substitution (a b k : ℤ) (hsq : a ^ 2 = 2 * b ^
     nlinarith
 
 -- 3(e): Coprime numbers cannot both be even.
--- A common divisor divides the greatest common divisor.
 lemma coprime_not_both_even (a b : ℕ) (hc : Nat.Coprime a b) (ha : 2 ∣ a) (hb : 2 ∣ b) :
     False := by
     have hgcd : 2 ∣ Nat.gcd a b := Nat.dvd_gcd ha hb
@@ -191,8 +181,6 @@ theorem sqrt_two_by_parity : Irrational (Real.sqrt 2) := by
         rw [mul_comm (2 : ℤ) ((b : ℤ) ^ 2)]
         exact_mod_cast hq  -- Express a² = 2b² in ℤ rather than ℚ.
     have hcoprime : Nat.Coprime a.natAbs b := q.reduced  -- gcd(|a|, b) = 1.
-    -- These are two small conversion helpers, not new assumptions about the fraction.
-    -- Each m is a temporary input used only inside its own helper; hm proves it is even.
     -- toNatAbs: if an integer m is even, its absolute value (a natural number) is even.
     have toNatAbs (m : ℤ) (hm : (2 : ℤ) ∣ m) : (2 : ℕ) ∣ m.natAbs := by
         rw [← Int.natCast_dvd]  -- Rewrite 2 ∣ |m| in ℕ as 2 ∣ m in ℤ.
