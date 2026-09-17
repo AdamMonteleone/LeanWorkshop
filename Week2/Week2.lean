@@ -18,7 +18,7 @@ lemma mem_of_mem_inter (S T : Set X) (x : X) (h : x ∈ S ∩ T) : x ∈ S := by
   sorry
 
 -- 1(c): S ⊆ T and x ∈ S imply x ∈ T.
-lemma mem_of_subset (S T : Set X) (x : X) (h : S ⊆ T) (hₓ : x ∈ S) : x ∈ T := by
+lemma mem_of_subset (S T : Set X) (x : X) (h : S ⊆ T) (hx : x ∈ S) : x ∈ T := by
   sorry
 
 -- 1(d): f(x) ∈ U → x ∈ f⁻¹(U).
@@ -26,7 +26,7 @@ lemma mem_preimage_of_mem (f : X → Y) (U : Set Y) (x : X) (h : f x ∈ U) : x 
   sorry
 
 -- 1(e): x ∈ S → f(x) ∈ f(S).
-lemma mem_image_of_mem (f : X → Y) (S : Set X) (x : X) (hₓ : x ∈ S) : f x ∈ f '' S := by
+lemma mem_image_of_mem (f : X → Y) (S : Set X) (x : X) (hx : x ∈ S) : f x ∈ f '' S := by
   sorry
 
 -- 1(f): f(S ∩ T) ⊆ f(S) ∩ f(T).
@@ -34,6 +34,14 @@ lemma image_inter_subset (f : X → Y) (S T : Set X) :
     f '' (S ∩ T) ⊆ f '' S ∩ f '' T := by
   sorry
 
+-- 1(g): f(S ∩ f⁻¹(U)) = f(S) ∩ U.
+lemma image_inter_preimage (f : X → Y) (S : Set X) (U : Set Y) :
+    f '' (S ∩ f ⁻¹' U) = f '' S ∩ U := by
+  sorry
+
+-- 1(h): 𝒫(S ∩ T) = 𝒫(S) ∩ 𝒫(T).
+lemma powerset_inter (S T : Set X) : 𝒫 (S ∩ T) = 𝒫 S ∩ 𝒫 T := by
+  sorry
 
 /-! ## 2. Functions -/
 
@@ -42,7 +50,6 @@ lemma injective_of_comp (f : X → Y) (g : Y → Z)
     (hcomp : Function.Injective (g ∘ f)) : Function.Injective f := by
   sorry
 
-
 -- 2(b): If g ∘ f is surjective, then g is surjective.
 lemma surjective_of_comp (f : X → Y) (g : Y → Z)
     (hcomp : Function.Surjective (g ∘ f)) : Function.Surjective g := by
@@ -50,10 +57,8 @@ lemma surjective_of_comp (f : X → Y) (g : Y → Z)
 
 -- 2(c): If r ∘ f = id and f ∘ s = id, then r = s.
 lemma inverse_unique (f : X → Y) (r s : Y → X)
-    (hᵣ : r ∘ f = id) (hₛ : f ∘ s = id) : r = s := by
+    (hr : r ∘ f = id) (hs : f ∘ s = id) : r = s := by
   sorry
-
-
 
 -- 2(d): The singleton map X → 𝒫(X), x ↦ {x}, is injective.
 lemma singleton_injective : Function.Injective (fun x : X => ({x} : Set X)) := by
@@ -67,8 +72,7 @@ lemma cantor_not_surjective (f : X → Set X) : ¬ Function.Surjective f := by
 
 /-! ## 3. Relations
 
-Fix n ∈ ℤ. Write a ∼ b when n ∣ (b - a).
--/
+Fix n ∈ ℤ. Write a ∼ b when n ∣ (b - a). -/
 
 def Congruent (n a b : ℤ) : Prop := n ∣ (b - a)
 
@@ -77,12 +81,13 @@ lemma congruent_refl (n a : ℤ) : Congruent n a a := by
   sorry
 
 -- 3(b): a ∼ b → b ∼ a.
-lemma congruent_symm (n a b : ℤ) (h₁ : Congruent n a b) : Congruent n b a := by
+lemma congruent_symm (n a b : ℤ) (hab : Congruent n a b) : Congruent n b a := by
   sorry
+
 
 -- 3(c): a ∼ b and b ∼ c imply a ∼ c.
 lemma congruent_trans (n a b c : ℤ)
-    (h₁ : Congruent n a b) (h₂ : Congruent n b c) : Congruent n a c := by
+    (hab : Congruent n a b) (hbc : Congruent n b c) : Congruent n a c := by
   sorry
 
 -- 3(d): Congruence modulo n is an equivalence relation.
@@ -91,7 +96,7 @@ lemma congruent_equivalence (n : ℤ) : Equivalence (Congruent n) := by
 
 -- 3(e): a ∼ a′ and b ∼ b′ imply a + b ∼ a′ + b′.
 lemma congruent_add (n a a' b b' : ℤ)
-    (h₁ : Congruent n a a') (h₂ : Congruent n b b') :
+    (haa' : Congruent n a a') (hbb' : Congruent n b b') :
     Congruent n (a + b) (a' + b') := by
   sorry
 

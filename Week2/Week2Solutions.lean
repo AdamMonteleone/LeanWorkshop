@@ -106,20 +106,21 @@ lemma surjective_of_comp (f : X → Y) (g : Y → Z)
   use f x
   exact hx
 
--- 2(c): If r ∘ f = id and f ∘ s = id, then r = s. Hint: congrFun
+-- 2(c): If r ∘ f = id and f ∘ s = id, then r = s.
 lemma inverse_unique (f : X → Y) (r s : Y → X)
     (hr : r ∘ f = id) (hs : f ∘ s = id) : r = s := by
-  ext y
-  have h₁ : r (f (s y)) = s y := congrFun hr (s y)
-  have h₂ : f (s y) = y := congrFun hs y
-  rw [h₂] at h₁ -- r(y) = r(f(s(y))) = id(s(y)) = s(y)
-  exact h₁
+  calc
+    r = r ∘ id := by rfl
+    _ = r ∘ (f ∘ s) := by rw [hs]
+    _ = (r ∘ f) ∘ s := by rfl
+    _ = id ∘ s := by rw [hr]
+    _ = s := by rfl
 
 -- 2(d): The singleton map X → 𝒫(X), x ↦ {x}, is injective.
 lemma singleton_injective : Function.Injective (fun x : X => ({x} : Set X)) := by
   intro x y h
-  change ({x} : Set X) = ({y} : Set X) at h
-  change x ∈ ({y} : Set X)
+  change ({x} : Set X) = ({y} : Set X) at h -- f(x) = f(y) to showing {x} = {y}
+  change x ∈ ({y} : Set X) -- hence {x} = {y} is equivalent to x ∈ {y}
   simp [← h]
 
 -- 2(e): Prove and formalize Cantor’s theorem.
@@ -144,8 +145,7 @@ lemma cantor_not_surjective (f : X → Set X) : ¬ Function.Surjective f := by
 
 /-! ## 3. Relations
 
-Fix n ∈ ℤ. Write a ∼ b when n ∣ (b - a).
--/
+Fix n ∈ ℤ. Write a ∼ b when n ∣ (b - a). -/
 
 def Congruent (n a b : ℤ) : Prop := n ∣ (b - a)
 
@@ -160,16 +160,17 @@ lemma congruent_symm (n a b : ℤ) (hab : Congruent n a b) : Congruent n b a := 
   obtain ⟨k, hk⟩ := hab
   change ∃ l : ℤ, a - b = n * l
   use -k
-  calc
+  calc -- a - b = -(b-a) = -nk = n*(-k)
     a - b = -(b - a) := by ring
     _ = -(n * k) := by rw [hk]
     _ = n * (-k) := by ring
 
+
 -- 3(c): a ∼ b and b ∼ c imply a ∼ c.
 lemma congruent_trans (n a b c : ℤ)
     (hab : Congruent n a b) (hbc : Congruent n b c) : Congruent n a c := by
-  rcases hab with ⟨k, hk⟩
-  rcases hbc with ⟨l, hl⟩
+  obtain ⟨k, hk⟩ := hab
+  obtain ⟨l, hl⟩ := hbc
   change ∃ m : ℤ, c - a = n * m
   use k + l
   calc
@@ -191,8 +192,8 @@ lemma congruent_equivalence (n : ℤ) : Equivalence (Congruent n) := by
 lemma congruent_add (n a a' b b' : ℤ)
     (haa' : Congruent n a a') (hbb' : Congruent n b b') :
     Congruent n (a + b) (a' + b') := by
-  rcases haa' with ⟨k, hk⟩
-  rcases hbb' with ⟨l, hl⟩
+  obtain ⟨k, hk⟩ := haa'
+  obtain ⟨l, hl⟩ := hbb'
   change ∃ m : ℤ, (a' + b') - (a + b) = n * m
   use k + l
   calc
