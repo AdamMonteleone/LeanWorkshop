@@ -5,14 +5,23 @@ Resources for Lean workshops held as part of the [Melbourne Lean Seminar](https:
 ## Week 1 - Primes & Irrationality
 
 The goal this week is to become acquainted with the basic tactics in Lean and formalize two familiar proofs: Euclid’s proof that there are infinitely many primes, and the proof that $\sqrt{2}$ is irrational.
+   ```sh
+   git clone https://github.com/AdamMonteleone/LeanWorkshop/tree/main/Week1.git
+   ```
 
 ## Week 2 - Sets, Functions, and Relations
 
 The goal this week is to gain familiarity with the basics of sets, functions and equivalence relations. We prove Cantor's theorem in Lean, and look at equivalence relations for sets, in preparation for groups next the following week. 
+   ```sh
+   git clone https://github.com/AdamMonteleone/LeanWorkshop/tree/main/Week2.git
+   ```
 
 ## Week 3 - Groups, Homomorphisms, and the First Isomorphism Theorem
 
 The goal this week is to gain familiarity with the basics of group theory in Lean. We prove the subgroup test, the first isomorphism theorem and use our equivalence relation from week 2 to prove an instance of the chinese remainder theorem (the general case is left as a challenge). 
+   ```sh
+   git clone https://github.com/AdamMonteleone/LeanWorkshop/tree/main/Week3.git
+   ```
 
 ## Get started
 
