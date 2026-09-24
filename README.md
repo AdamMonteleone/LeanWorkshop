@@ -10,6 +10,10 @@ The goal this week is to become acquainted with the basic tactics in Lean and fo
 
 The goal this week is to gain familiarity with the basics of sets, functions and equivalence relations. We prove Cantor's theorem in Lean, and look at equivalence relations for sets, in preparation for groups next the following week. 
 
+## Week 3 - Groups, Homomorphisms, and the First Isomorphism Theorem
+
+The goal this week is to gain familiarity with the basics of group theory in Lean. We prove the subgroup test, the first isomorphism theorem and use our equivalence relation from week 2 to prove an instance of the chinese remainder theorem (the general case is left as a challenge). 
+
 ## Get started
 
 1. Follow the [Lean installation guide](https://lean-lang.org/install/) to install VS Code, the official Lean 4 extension, and complete its setup.
