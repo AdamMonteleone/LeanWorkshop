@@ -25,9 +25,7 @@ The goal this week is to gain familiarity with the basics of group theory in Lea
 
 ## Week 4 - Rings and Modules
 
-The goal this week is to gain familiarity with rings, ideals and modules in Lean. We work with units and nilpotent elements, preimages of prime ideals and annihilators, then compute with vectors and matrices. The characterization of the nilradical as the intersection of all prime ideals is a challenge.
-
-[Lean exercises](Week4/Week4.lean) · [Worksheet PDF](Week4/Workshop%20Sheet%20-%20Week%204.pdf)
+The goal this week is to learn how to work with rings, ideals and modules in Lean. 
 
 ```sh
 git clone https://github.com/AdamMonteleone/LeanWorkshop.git
