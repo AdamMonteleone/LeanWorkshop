@@ -23,6 +23,18 @@ The goal this week is to gain familiarity with the basics of group theory in Lea
    git clone https://github.com/AdamMonteleone/LeanWorkshop/tree/main/Week3.git
    ```
 
+## Week 4 - Rings and Modules
+
+The goal this week is to gain familiarity with rings, ideals and modules in Lean. We work with units and nilpotent elements, preimages of prime ideals and annihilators, then compute with vectors and matrices. The characterization of the nilradical as the intersection of all prime ideals is a challenge.
+
+[Lean exercises](Week4/Week4.lean) · [Worksheet PDF](Week4/Workshop%20Sheet%20-%20Week%204.pdf)
+
+```sh
+git clone https://github.com/AdamMonteleone/LeanWorkshop.git
+```
+
+Open the cloned `LeanWorkshop` folder in VS Code and select `Week4/Week4.lean`. Follow the setup steps below to download Mathlib.
+
 ## Get started
 
 1. Follow the [Lean installation guide](https://lean-lang.org/install/) to install VS Code, the official Lean 4 extension, and complete its setup.
@@ -40,7 +52,7 @@ The goal this week is to gain familiarity with the basics of group theory in Lea
    ```
 
    This downloads the precompiled mathematics library used by the exercises. The first setup can take several minutes, so doing it before the workshop helps.
-5. Open `Week1/Week1.lean` or `Week2/Week2.lean` and start with Exercise 1. Place your cursor inside a proof to see the goal and hypotheses in Lean's Infoview. Warnings about `sorry` are expected until you complete the exercises.
+5. Open the exercise file for your week (`Week1/Week1.lean`, `Week2/Week2.lean`, `Week3/Week3.lean` or `Week4/Week4.lean`) and start with Exercise 1. Place your cursor inside a proof to see the goal and hypotheses in Lean's Infoview. Warnings about `sorry` are expected until you complete the exercises.
 
 Keep the whole project folder together: the Lean files need the included project configuration to find the correct library and Lean version.
 
