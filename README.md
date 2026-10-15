@@ -28,7 +28,7 @@ The goal this week is to gain familiarity with the basics of group theory in Lea
 The goal this week is to learn how to work with rings, ideals and modules in Lean. 
 
 ```sh
-git clone https://github.com/AdamMonteleone/LeanWorkshop.git
+git clone https://github.com/AdamMonteleone/LeanWorkshop/tree/main/Week4.git
 ```
 
 Open the cloned `LeanWorkshop` folder in VS Code and select `Week4/Week4.lean`. Follow the setup steps below to download Mathlib.
