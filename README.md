@@ -5,33 +5,26 @@ Resources for Lean workshops held as part of the [Melbourne Lean Seminar](https:
 ## Week 1 - Primes & Irrationality
 
 The goal this week is to become acquainted with the basic tactics in Lean and formalize two familiar proofs: Euclid’s proof that there are infinitely many primes, and the proof that $\sqrt{2}$ is irrational.
-   ```sh
-   git clone https://github.com/AdamMonteleone/LeanWorkshop/tree/main/Week1.git
-   ```
+
+Open [Week 1 exercises](Week1/Week1.lean) in VS Code. [Worksheet (PDF)](Week1/Workshop%20Sheet%20-%20Week%201.pdf).
 
 ## Week 2 - Sets, Functions, and Relations
 
 The goal this week is to gain familiarity with the basics of sets, functions and equivalence relations. We prove Cantor's theorem in Lean, and look at equivalence relations for sets, in preparation for groups next the following week. 
-   ```sh
-   git clone https://github.com/AdamMonteleone/LeanWorkshop/tree/main/Week2.git
-   ```
+
+Open [Week 2 exercises](Week2/Week2.lean) in VS Code. [Worksheet (PDF)](Week2/Workshop%20Sheet%20-%20Week%202.pdf).
 
 ## Week 3 - Groups, Homomorphisms, and the First Isomorphism Theorem
 
 The goal this week is to gain familiarity with the basics of group theory in Lean. We prove the subgroup test, the first isomorphism theorem and use our equivalence relation from week 2 to prove an instance of the chinese remainder theorem (the general case is left as a challenge). 
-   ```sh
-   git clone https://github.com/AdamMonteleone/LeanWorkshop/tree/main/Week3.git
-   ```
+
+Open [Week 3 exercises](Week3/Week3.lean) in VS Code. [Worksheet (PDF)](Week3/Workshop%20Sheet%20-%20Week%203.pdf).
 
 ## Week 4 - Rings and Modules
 
 The goal this week is to learn how to work with rings, ideals and modules in Lean. 
 
-```sh
-git clone https://github.com/AdamMonteleone/LeanWorkshop/tree/main/Week4.git
-```
-
-Open the cloned `LeanWorkshop` folder in VS Code and select `Week4/Week4.lean`. Follow the setup steps below to download Mathlib.
+Open [Week 4 exercises](Week4/Week4.lean) in VS Code. [Worksheet (PDF)](Week4/Workshop%20Sheet%20-%20Week%204.pdf). Follow the setup steps below to download Mathlib.
 
 ## Get started
 
@@ -40,6 +33,7 @@ Open the cloned `LeanWorkshop` folder in VS Code and select `Week4/Week4.lean`. 
 
    ```sh
    git clone https://github.com/AdamMonteleone/LeanWorkshop.git
+   cd LeanWorkshop
    ```
 
 3. In VS Code, choose **File → Open Folder** and open the cloned `LeanWorkshop` folder containing `lakefile.toml`.
