@@ -26,6 +26,10 @@ The goal this week is to learn how to work with rings, ideals and modules in Lea
 
 Open [Week 4 exercises](Week4/Week4.lean) in VS Code. [Worksheet (PDF)](Week4/Workshop%20Sheet%20-%20Week%204.pdf). Follow the setup steps below to download Mathlib.
 
+## Week 5 - Topology
+
+[Week 5 exercises](Week5/week5.lean)
+
 ## Get started
 
 1. Follow the [Lean installation guide](https://lean-lang.org/install/) to install VS Code, the official Lean 4 extension, and complete its setup.
