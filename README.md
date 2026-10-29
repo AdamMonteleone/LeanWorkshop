@@ -24,11 +24,11 @@ Open [Week 3 exercises](Week3/Week3.lean) in VS Code. [Worksheet (PDF)](Week3/Wo
 
 The goal this week is to learn how to work with rings, ideals and modules in Lean. 
 
-Open [Week 4 exercises](Week4/Week4.lean) in VS Code. [Worksheet (PDF)](Week4/Workshop%20Sheet%20-%20Week%204.pdf). Follow the setup steps below to download Mathlib.
+Open [Week 4 exercises](Week4/Week4.lean) in VS Code. [Worksheet (PDF)](Week4/Workshop%20Sheet%20-%20Week%204.pdf). 
+## Week 5 - Topology, Filters and Analysis
+The goal this week is to introduce Filters and how we can reduce results about filters to prove standard results in real analysis. 
 
-## Week 5 - Topology
-
-[Week 5 exercises](Week5/week5.lean)
+Open [Week 5 exercises](Week5/week5.lean) in VS Code. This session will be led by Moritz Doll.
 
 ## Get started
 
