@@ -48,8 +48,7 @@ Open [Week 4 exercises](Week4/Week4.lean) in VS Code. [Worksheet (PDF)](Week4/Wo
    ```
 
    This downloads the precompiled mathematics library used by the exercises. The first setup can take several minutes, so doing it before the workshop helps.
-5. Open the exercise file for your week (`Week1/Week1.lean`, `Week2/Week2.lean`, `Week3/Week3.lean` or `Week4/Week4.lean`) and start with Exercise 1. Place your cursor inside a proof to see the goal and hypotheses in Lean's Infoview. Warnings about `sorry` are expected until you complete the exercises.
-
+5. Open the exercise file for your week.
 Keep the whole project folder together: the Lean files need the included project configuration to find the correct library and Lean version.
 
 ## Useful links
